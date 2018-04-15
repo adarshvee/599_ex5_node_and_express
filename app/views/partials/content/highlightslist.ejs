@@ -1,68 +1,67 @@
-<article class="highlightslist <% if (pageID == 'home') { %>jumbotron hidden-xs<% } %>">
-  <div class="container">
-    <div class="row">
-        <% highlights.forEach(function(item) { %>
-        <div class="<% if (pageID == 'home') { %>col-sm-4 text-center<% } else { %>col-sm-8 <% } %>">
-          <h3 class="highlightslist-title"><%= item.site %></h3>
-          <h5 class="highlightslist-name">with <a href="/highlights/<%= item.id %>"><%= item.site %></a></h5>
-          <div class="highlightslist-info">
+<article class="highlightslist <% if (pageID == 'home') { %>jumbotron d-sm-none d-md-block <% } %>">
+  <% if (pageID == 'home') { %>
+  <div class="row">
+  <% } %>
+  <% highlights.forEach(function(item) { %>
+
+
+    <div class="<% if (pageID == 'home') { %>col-xl-3 col-lg-4 col-md-6  text-center<% } else { %>col-md-12 col-xl-12 col-lg-12 col-sm-12 col-xs-12 <% } %>">
+      <div class="row">
+        <h3 class="highlightslist-title"><%= item.site %></h3>
+      </div>
+      <% if (pageID == 'home') { %>
+
+          <div class="row">
             <a href="/highlights/<%= item.id %>">
-
-              <% if (pageID == 'home') { %>
-                <img class="highlightslist-img img-circle" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>"></a>
-              <% } %>
-
-              <% if (pageID == 'highlightList') { %>
-                <img class="highlightslist-img img-circle pull-left" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>"></a>
-              <% } %>
+              <img class="highlightslist-img rounded-circle" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>">
             </a>
-
-            <% if (pageID == 'highlightDetail') { %>
-              <img class="highlightslist-img img-responsive pull-left" src="<%= item.image %>"  alt="Photo of <%= item.site %>"></a>
-            <% } %>
-          </a>
-
-            <div class="row">
-              <% if (pageID !== 'home') { %>
-                <div class="col-sm-6  col-md-6  col-lg-6">
-                <iframe src="<%= item.videoEmbed %>" >
-                </iframe>
-              </div>
-                <% if (pageID == 'highlightList') { %>
-                  <%= item.category %>
-                <% } else { %>
-                  <div id="map"  class="col-sm-6 col-md-6  col-lg-6"></div>
-                  </div>
-                  <div class="row">
-                    <%- item.info %>
-                  </div>
-                <% } %>
-              <% } %>
-            </div>
           </div>
 
-    </div> <!-- row -->
-        <% if (pageID == 'highlightDetail') { %>
-        <script>
-          function initMap() {
-            var pos = {lat : <%= item.lat %>, lng :  <%- item.long %>};
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 12,
-              center: pos
-            });
-            var marker = new google.maps.Marker({
-              position: pos,
-              map: map
-            });
-          }
+      <% } %>
+      <% if (pageID == 'highlightList') { %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  col-xl-6" >
+            <a href="/highlights/<%= item.id %>" style="display:block;">
+              <img class="highlightslist-img rounded-circle pull-left" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>">
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" >
+            <iframe src="<%= item.videoEmbed %>" ></iframe>
+          </div>
+        </div>
+      <% } %>
+      <% if (pageID == 'highlightDetail') { %>
+        <img class="highlightslist-img img-responsive pull-left" width="500px" src="<%= item.image %>"  alt="Photo of <%= item.site %>">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <iframe src="<%= item.videoEmbed %>" >
+            </iframe>
+          </div>
+          <div id="map"  class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"></div>
+        </div>
+        <%- item.info %>
+      <% } %>
+    </div>
 
-          </script>
-        <% }  %> <!-- initMap() -->
+    <% if (pageID == 'highlightDetail') { %>
+    <script>
+      function initMap() {
+        var pos = {lat : <%= item.lat %>, lng :  <%- item.long %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: pos
+        });
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map
+        });
+      }
 
-        <%  }); %><!-- for each -->
+      </script>
+    <% }  %> <!-- initMap() -->
 
-
-
-
-  </div><!-- container -->
+  <%  }); %><!-- for each -->
+  <% if (pageID == 'home') { %>
+  </div>
+  <% } %>
 </article>
