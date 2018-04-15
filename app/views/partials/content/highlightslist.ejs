@@ -22,23 +22,47 @@
             <% } %>
           </a>
 
-
-            <% if (pageID !== 'home') { %>
-              <iframe src="<%= item.videoEmbed %>">
-              </iframe>
-              <% if (pageID == 'highlightList') { %>
-                <%= item.category %>
-              <% } else { %>
-                <%- item.info %>
+            <div class="row">
+              <% if (pageID !== 'home') { %>
+                <div class="col-sm-6  col-md-6  col-lg-6">
+                <iframe src="<%= item.videoEmbed %>" >
+                </iframe>
+              </div>
+                <% if (pageID == 'highlightList') { %>
+                  <%= item.category %>
+                <% } else { %>
+                  <div id="map"  class="col-sm-6 col-md-6  col-lg-6"></div>
+                  </div>
+                  <div class="row">
+                    <%- item.info %>
+                  </div>
+                <% } %>
               <% } %>
-            <% } %>
-
-            <% if (pageID == 'highlightDetail') { %>
-              <div id="map">ABCDEF</div>
-            <% } %>
+            </div>
           </div>
-        </div>
-        <%  }); %>
-    </div><!-- row -->
+
+    </div> <!-- row -->
+        <% if (pageID == 'highlightDetail') { %>
+        <script>
+          function initMap() {
+            var pos = {lat : <%= item.lat %>, lng :  <%- item.long %>};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: pos
+            });
+            var marker = new google.maps.Marker({
+              position: pos,
+              map: map
+            });
+          }
+
+          </script>
+        <% }  %> <!-- initMap() -->
+
+        <%  }); %><!-- for each -->
+
+
+
+
   </div><!-- container -->
 </article>

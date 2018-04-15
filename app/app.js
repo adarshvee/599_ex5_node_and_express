@@ -8,7 +8,7 @@ app.set('appData', dataFile);
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
 
-app.locals.siteTitle = 'ABCD Meetups';
+app.locals.siteTitle = 'Tamil Nadu tourism';
 app.locals.allHighlights = dataFile.data.highlights;
 
 app.use(express.static('app/public'));

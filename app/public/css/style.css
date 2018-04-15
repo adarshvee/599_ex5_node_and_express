@@ -225,3 +225,8 @@ header .navbar-inverse .navbar-nav>li>a {
     width: 20%;
   }
 }
+
+#map {
+  height: 200px;
+  width: 200px;
+}
