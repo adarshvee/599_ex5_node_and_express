@@ -1,0 +1,44 @@
+<article class="highlightslist <% if (pageID == 'home') { %>jumbotron hidden-xs<% } %>">
+  <div class="container">
+    <div class="row">
+        <% highlights.forEach(function(item) { %>
+        <div class="<% if (pageID == 'home') { %>col-sm-4 text-center<% } else { %>col-sm-8 <% } %>">
+          <h3 class="highlightslist-title"><%= item.site %></h3>
+          <h5 class="highlightslist-name">with <a href="/highlights/<%= item.id %>"><%= item.site %></a></h5>
+          <div class="highlightslist-info">
+            <a href="/highlights/<%= item.id %>">
+
+              <% if (pageID == 'home') { %>
+                <img class="highlightslist-img img-circle" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>"></a>
+              <% } %>
+
+              <% if (pageID == 'highlightList') { %>
+                <img class="highlightslist-img img-circle pull-left" src="<%= item.image %>" width="300px" alt="Photo of <%= item.site %>"></a>
+              <% } %>
+            </a>
+
+            <% if (pageID == 'highlightDetail') { %>
+              <img class="highlightslist-img img-responsive pull-left" src="<%= item.image %>"  alt="Photo of <%= item.site %>"></a>
+            <% } %>
+          </a>
+
+
+            <% if (pageID !== 'home') { %>
+              <iframe src="<%= item.videoEmbed %>">
+              </iframe>
+              <% if (pageID == 'highlightList') { %>
+                <%= item.category %>
+              <% } else { %>
+                <%- item.info %>
+              <% } %>
+            <% } %>
+
+            <% if (pageID == 'highlightDetail') { %>
+              <div id="map">ABCDEF</div>
+            <% } %>
+          </div>
+        </div>
+        <%  }); %>
+    </div><!-- row -->
+  </div><!-- container -->
+</article>
