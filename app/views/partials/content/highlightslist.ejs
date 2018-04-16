@@ -1,3 +1,22 @@
+<% if (pageID == 'highlightFilter') { %>
+  <form id="filterForm" class="form-horizontal" action="#">
+    <div class="row">
+      <% var iterator1 = categories.values() %>
+      <% for (let i = 0; i < categories.size; i++) { %>
+        <div class="form-check form-check-inline checkbox-rounded checkbox-success-filled">
+          <% var nextCat = iterator1.next().value  %>
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox<%= i %>" value=<%= i %> <%- selectCategories.has(nextCat) ? "checked" : "" %>  >
+          <label class="form-check-label" for="inlineCheckbox<%= i %>"><%= nextCat %></label>
+        </div>
+      <% } %>
+      <span class="input-group-btn">
+        <button id="filterSubmit" class="btn btn-info" type="submit">Filter</button>
+      </span>
+    </div>
+
+  </form>
+<% } %>
+
 <article class="highlightslist <% if (pageID == 'home') { %>jumbotron d-sm-none d-md-block <% } %>">
   <% if (pageID == 'home') { %>
   <div class="row">
@@ -18,7 +37,7 @@
           </div>
 
       <% } %>
-      <% if (pageID == 'highlightList') { %>
+      <% if (pageID == 'highlightList' || pageID == 'highlightFilter') { %>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  col-xl-6" >
             <a href="/highlights/<%= item.id %>" style="display:block;">

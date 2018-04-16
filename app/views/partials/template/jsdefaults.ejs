@@ -9,7 +9,10 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMJc9UCbZu0ARAARU1Qk868KRHbXAKcfI&callback=initMap">
     </script>
-    
 <% } %>
 
+<% if(typeof pageID == "highlightFilter") { %>
+  <script src="/js/filter.js"></script>
+<% } %>
+<script src="/js/filter.js"></script>
 <script src="/reload/reload.js"></script>
